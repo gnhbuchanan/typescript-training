@@ -1,25 +1,19 @@
-function add(n1: number, n2: number){
-    return n1 + n2
+let userInput: unknown
+let userName: string
+
+userInput = 5
+userInput = 'Max';
+
+//even though unknown type can be reassigned, it can't be assigned to a variable with a known type
+//If this needs to be accomplished an additional type check is required
+if(typeof userInput === 'string'){
+    userName = userInput
 }
 
-function printResult(num: number){
-    console.log('Result: ' + num)
+
+function generateError(message: string, code: number){
+    throw {message: message, errorCode: code}
 }
 
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void){
-    const result = n1 + n2
-    cb(result)
-}
 
-printResult(add(5, 12))
-
-let combineValues: (a: number, b: number) => number
-combineValues = add
-// combineValues = printResult
-
-console.log(combineValues(8, 8))
-
-addAndHandle(10, 20, (result) => {
-    console.log(result)
-    return result
-})
+generateError('An error occured', 500)
